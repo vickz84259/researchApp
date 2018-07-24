@@ -1,7 +1,8 @@
-package ke.co.slick.researchapp
+package ke.co.slick.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import ke.co.slick.researchapp.R
 
 class MainActivity : AppCompatActivity() {
 

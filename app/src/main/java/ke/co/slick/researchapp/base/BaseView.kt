@@ -1,4 +1,4 @@
-package ke.co.slick.base
+package ke.co.slick.researchapp.base
 
 interface BaseView<T> {
 

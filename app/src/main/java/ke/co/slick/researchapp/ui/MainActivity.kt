@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import ke.co.slick.researchapp.R
+import ke.co.slick.researchapp.ui.searchresults.SearchResultsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 const val EXTRA_QUERY = "ke.co.slick.researchapp.QUERY"

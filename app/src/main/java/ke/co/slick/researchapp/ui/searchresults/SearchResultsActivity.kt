@@ -1,4 +1,4 @@
-package ke.co.slick.researchapp.ui
+package ke.co.slick.researchapp.ui.searchresults
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -6,7 +6,8 @@ import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.ResearchApplication
 import javax.inject.Inject
 
-class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
+class SearchResultsActivity : AppCompatActivity(),
+        SearchResultsContract.View {
 
     @Inject
     override lateinit var presenter: SearchResultsContract.Presenter

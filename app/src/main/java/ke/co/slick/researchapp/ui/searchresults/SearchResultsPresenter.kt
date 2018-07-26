@@ -1,8 +1,9 @@
-package ke.co.slick.researchapp.ui
+package ke.co.slick.researchapp.ui.searchresults
 
 import javax.inject.Inject
 
-class SearchResultsPresenter @Inject constructor() : SearchResultsContract.Presenter {
+class SearchResultsPresenter @Inject constructor() :
+        SearchResultsContract.Presenter {
 
     var view: SearchResultsContract.View? = null
 

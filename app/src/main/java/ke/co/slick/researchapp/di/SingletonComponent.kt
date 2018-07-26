@@ -1,7 +1,7 @@
 package ke.co.slick.researchapp.di
 
 import dagger.Component
-import ke.co.slick.researchapp.ui.SearchResultsActivity
+import ke.co.slick.researchapp.ui.searchresults.SearchResultsActivity
 import javax.inject.Singleton
 
 @Singleton

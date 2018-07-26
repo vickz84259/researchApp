@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.ResearchApplication
+import ke.co.slick.researchapp.data.models.Doc
 import ke.co.slick.researchapp.ui.EXTRA_QUERY
 import javax.inject.Inject
 
@@ -32,5 +33,21 @@ class SearchResultsActivity : AppCompatActivity(),
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         query = savedInstanceState.getString("query")
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        presenter.attach(this)
+        presenter.search(query)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detach()
+    }
+
+    override fun displayResults(results: List<Doc>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

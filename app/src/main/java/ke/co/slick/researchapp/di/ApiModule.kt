@@ -2,7 +2,6 @@ package ke.co.slick.researchapp.di
 
 import dagger.Module
 import dagger.Provides
-import ke.co.slick.researchapp.data.DataManager
 import ke.co.slick.researchapp.data.apis.BASE_URL
 import ke.co.slick.researchapp.data.apis.UsptoApi
 import retrofit2.Retrofit
@@ -12,9 +11,6 @@ import javax.inject.Singleton
 
 @Module
 class ApiModule {
-
-    @Provides
-    fun providesDataManager(dataManager: DataManager) = dataManager
 
     @Singleton
     @Provides

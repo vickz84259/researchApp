@@ -5,7 +5,7 @@ import ke.co.slick.researchapp.ui.searchresults.SearchResultsActivity
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [UIModule::class])
+@Component(modules = [UIModule::class, ApiModule::class])
 interface SingletonComponent {
     fun inject(activity: SearchResultsActivity)
 }

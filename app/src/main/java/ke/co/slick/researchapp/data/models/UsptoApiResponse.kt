@@ -31,5 +31,5 @@ data class Doc(
         val archiveUrl: String,
         val pdfPath: String,
         val year: String,
-        @Json(name = "_version_") val version: Int
+        @Json(name = "_version_") val version: Long
 )

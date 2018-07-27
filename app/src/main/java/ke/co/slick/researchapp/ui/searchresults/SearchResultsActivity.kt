@@ -1,14 +1,14 @@
 package ke.co.slick.researchapp.ui.searchresults
 
+import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.ResearchApplication
 import ke.co.slick.researchapp.data.models.Doc
 import ke.co.slick.researchapp.ui.EXTRA_QUERY
 import javax.inject.Inject
 
-class SearchResultsActivity : AppCompatActivity(),
+class SearchResultsActivity : Activity(),
         SearchResultsContract.View {
 
     @Inject

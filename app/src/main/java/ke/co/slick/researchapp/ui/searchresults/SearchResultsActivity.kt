@@ -17,9 +17,6 @@ class SearchResultsActivity : Activity(),
     override lateinit var presenter: SearchResultsContract.Presenter
     lateinit var query: String
 
-    private lateinit var layoutManager: LinearLayoutManager
-    private lateinit var adapter: SearchResultsAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         val app = application as ResearchApplication
         app.component.inject(this)

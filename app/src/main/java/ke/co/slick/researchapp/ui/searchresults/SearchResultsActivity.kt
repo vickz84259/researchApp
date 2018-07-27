@@ -15,7 +15,7 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
 
     @Inject
     override lateinit var presenter: SearchResultsContract.Presenter
-    lateinit var query: String
+    private lateinit var query: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val app = application as ResearchApplication

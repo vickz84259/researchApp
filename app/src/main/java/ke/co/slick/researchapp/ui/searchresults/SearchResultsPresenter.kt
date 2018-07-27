@@ -11,7 +11,7 @@ class SearchResultsPresenter @Inject constructor(val dataManager: DataManager) :
         SearchResultsContract.Presenter {
 
     var view: SearchResultsContract.View? = null
-    val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun attach(view: SearchResultsContract.View) {
         this.view = view

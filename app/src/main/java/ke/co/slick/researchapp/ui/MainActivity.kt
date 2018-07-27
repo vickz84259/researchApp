@@ -1,16 +1,17 @@
 package ke.co.slick.researchapp.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.ui.searchresults.SearchResultsActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 
 const val EXTRA_QUERY = "ke.co.slick.researchapp.QUERY"
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,5 +25,6 @@ class MainActivity : Activity() {
         }
 
         startActivity(intent)
+        Timber.i("Starting SearchResultsActivity")
     }
 }

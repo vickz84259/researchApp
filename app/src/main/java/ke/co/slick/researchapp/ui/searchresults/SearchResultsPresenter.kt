@@ -26,7 +26,7 @@ class SearchResultsPresenter @Inject constructor(val dataManager: DataManager) :
         compositeDisposable.add(
                 observable
                     .subscribeOn(Schedulers.io())
-                    .map { it.docs }
+                    .map { it.response.docs }
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe { view?.displayResults(it) }
         )

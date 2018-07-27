@@ -1,17 +1,17 @@
 package ke.co.slick.researchapp.ui.searchresults
 
-import android.app.Activity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.ResearchApplication
 import ke.co.slick.researchapp.data.models.Doc
 import ke.co.slick.researchapp.ui.EXTRA_QUERY
 import kotlinx.android.synthetic.main.activity_search_results.*
+import timber.log.Timber
 import javax.inject.Inject
 
-class SearchResultsActivity : Activity(),
-        SearchResultsContract.View {
+class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
 
     @Inject
     override lateinit var presenter: SearchResultsContract.Presenter
@@ -25,6 +25,7 @@ class SearchResultsActivity : Activity(),
         setContentView(R.layout.activity_search_results)
 
         query = intent.getStringExtra(EXTRA_QUERY)
+        Timber.d("Param query in onCreate: %s", query)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
@@ -38,9 +39,13 @@ class SearchResultsActivity : Activity(),
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         query = savedInstanceState.getString("query")
+
+        Timber.d("Param query after restoring state: %s", query)
     }
 
     override fun onResume() {
+        Timber.i("onResume called")
+
         super.onResume()
 
         presenter.attach(this)
@@ -48,11 +53,14 @@ class SearchResultsActivity : Activity(),
     }
 
     override fun onDestroy() {
+        Timber.i("onDestory called")
+
         super.onDestroy()
         presenter.detach()
     }
 
     override fun displayResults(results: List<Doc>) {
+        Timber.i("SearchResultsActivity displayResults called")
         recyclerView.adapter = SearchResultsAdapter(results)
     }
 }

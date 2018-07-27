@@ -2,10 +2,12 @@ package ke.co.slick.researchapp.ui.searchresults
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.ResearchApplication
 import ke.co.slick.researchapp.data.models.Doc
 import ke.co.slick.researchapp.ui.EXTRA_QUERY
+import kotlinx.android.synthetic.main.activity_search_results.*
 import javax.inject.Inject
 
 class SearchResultsActivity : Activity(),
@@ -15,6 +17,9 @@ class SearchResultsActivity : Activity(),
     override lateinit var presenter: SearchResultsContract.Presenter
     lateinit var query: String
 
+    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var adapter: SearchResultsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         val app = application as ResearchApplication
         app.component.inject(this)
@@ -23,6 +28,9 @@ class SearchResultsActivity : Activity(),
         setContentView(R.layout.activity_search_results)
 
         query = intent.getStringExtra(EXTRA_QUERY)
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -48,6 +56,6 @@ class SearchResultsActivity : Activity(),
     }
 
     override fun displayResults(results: List<Doc>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        recyclerView.adapter = SearchResultsAdapter(results)
     }
 }

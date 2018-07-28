@@ -15,6 +15,7 @@ class CacheManager @Inject constructor(private val sharedPreferences: SharedPref
         sharedPreferences.edit().putString(query, value).apply()
     }
 
+    // ToDo: Implement cache in retrofit
     fun clearCache(query: String?) {
         val editor = sharedPreferences.edit()
 

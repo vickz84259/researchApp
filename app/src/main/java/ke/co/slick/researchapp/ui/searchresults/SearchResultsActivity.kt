@@ -2,6 +2,7 @@ package ke.co.slick.researchapp.ui.searchresults
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.ResearchApplication
@@ -29,6 +30,9 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
+
+        val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        recyclerView.addItemDecoration(itemDecoration)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

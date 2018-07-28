@@ -15,7 +15,6 @@ class SearchResultsAdapter(private val dataSet: List<Doc>) :
     class ViewHolder(override val containerView: View?) :
             RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        val applicationType = resultApplicationType
         val documentType = resultDocumentType
         val title = resultTitle
     }
@@ -30,7 +29,6 @@ class SearchResultsAdapter(private val dataSet: List<Doc>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataSet[position]
 
-        holder.applicationType.text = item.applicationType
         holder.documentType.text = item.documentType
         holder.title.text = item.title
     }

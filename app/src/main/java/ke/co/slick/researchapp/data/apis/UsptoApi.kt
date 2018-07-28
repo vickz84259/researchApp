@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
 
-const val BASE_URL = "https://developer.uspto.gov/ibd-api/"
+const val USPTO_BASE_URL = "https://developer.uspto.gov/ibd-api/"
 
 interface UsptoApi {
 

@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
 import ke.co.slick.researchapp.R
-import ke.co.slick.researchapp.data.apis.BASE_URL
+import ke.co.slick.researchapp.data.apis.USPTO_BASE_URL
 import ke.co.slick.researchapp.data.apis.UsptoApi
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -24,19 +24,16 @@ class ApiModule {
 
     @Singleton
     @Provides
-    fun providesApi(retrofit: Retrofit) = retrofit.create(UsptoApi::class.java)
-
-    @Singleton
-    @Provides
-    fun providesRetrofit(
+    fun providesUsptoApi(
             converterFactory: MoshiConverterFactory,
             adapterFactory: RxJava2CallAdapterFactory
-    ): Retrofit {
+    ): UsptoApi {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(USPTO_BASE_URL)
             .addConverterFactory(converterFactory)
             .addCallAdapterFactory(adapterFactory)
             .build()
+            .create(UsptoApi::class.java)
     }
 
     @Singleton

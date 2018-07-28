@@ -7,10 +7,10 @@ import ke.co.slick.researchapp.data.DataManager
 import timber.log.Timber
 import javax.inject.Inject
 
-class SearchResultsPresenter @Inject constructor(val dataManager: DataManager) :
+class SearchResultsPresenter @Inject constructor(private val dataManager: DataManager) :
         SearchResultsContract.Presenter {
 
-    var view: SearchResultsContract.View? = null
+    private var view: SearchResultsContract.View? = null
     private val compositeDisposable = CompositeDisposable()
 
     override fun attach(view: SearchResultsContract.View) {
@@ -19,7 +19,7 @@ class SearchResultsPresenter @Inject constructor(val dataManager: DataManager) :
     }
 
     override fun detach() {
-        this.view = null
+        view = null
         compositeDisposable.dispose()
 
         Timber.d("observable disposed")

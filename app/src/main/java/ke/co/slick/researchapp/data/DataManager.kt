@@ -8,7 +8,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DataManager @Inject constructor(val usptoApi: UsptoApi, val cacheManager: CacheManager) {
+class DataManager @Inject constructor(
+        private val usptoApi: UsptoApi,
+        private val cacheManager: CacheManager
+) {
 
     private val moshi = Moshi.Builder().build()
     private val jsonAdapter = moshi.adapter(ApiResponse::class.java)

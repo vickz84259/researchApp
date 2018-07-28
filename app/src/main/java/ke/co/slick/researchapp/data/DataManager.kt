@@ -3,7 +3,7 @@ package ke.co.slick.researchapp.data
 import com.squareup.moshi.Moshi
 import io.reactivex.Observable
 import ke.co.slick.researchapp.data.apis.UsptoApi
-import ke.co.slick.researchapp.data.models.ApiResponse
+import ke.co.slick.researchapp.data.models.UsptoResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -14,19 +14,19 @@ class DataManager @Inject constructor(
 ) {
 
     private val moshi = Moshi.Builder().build()
-    private val jsonAdapter = moshi.adapter(ApiResponse::class.java)
+    private val jsonAdapter = moshi.adapter(UsptoResponse::class.java)
 
-    private fun getFromCache(query: String): ApiResponse {
+    private fun getFromCache(query: String): UsptoResponse {
         val jsonData = cacheManager.getCache(query)
         return jsonAdapter.fromJson(jsonData) ?: throw NullPointerException()
     }
 
-    private fun storeInCache(query: String, apiResponse: ApiResponse) {
-        val jsonData = jsonAdapter.toJson(apiResponse)
+    private fun storeInCache(query: String, usptoResponse: UsptoResponse) {
+        val jsonData = jsonAdapter.toJson(usptoResponse)
         cacheManager.storeCache(query, jsonData)
     }
 
-    fun getSearchResults(query: String): Observable<ApiResponse> {
+    fun getSearchResults(query: String): Observable<UsptoResponse> {
         val modifiedQuery = "uspto:$query"
 
         return when (cacheManager.isCacheAvailable(modifiedQuery)) {

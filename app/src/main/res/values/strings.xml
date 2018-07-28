@@ -3,4 +3,5 @@
   <string name="button_search">Search</string>
   <string name="search_placeholder">Enter your search query</string>
   <string name="text_placeholder">Text</string>
+  <string name="preference_file">ke.co.slick.researchapp.CACHE</string>
 </resources>

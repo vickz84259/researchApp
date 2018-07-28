@@ -1,1 +1,4 @@
 /build
+
+# Resource file that stores API keys
+src/main/res/secrets.xml

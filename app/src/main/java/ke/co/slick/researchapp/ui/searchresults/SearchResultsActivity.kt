@@ -26,7 +26,6 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
         setContentView(R.layout.activity_search_results)
 
         query = intent.getStringExtra(EXTRA_QUERY)
-        Timber.d("Param query in onCreate: %s", query)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
@@ -35,21 +34,7 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
         recyclerView.addItemDecoration(itemDecoration)
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString("query", query)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        query = savedInstanceState.getString("query")
-
-        Timber.d("Param query after restoring state: %s", query)
-    }
-
     override fun onResume() {
-        Timber.i("onResume called")
-
         super.onResume()
 
         presenter.attach(this)
@@ -57,8 +42,6 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
     }
 
     override fun onDestroy() {
-        Timber.i("onDestory called")
-
         super.onDestroy()
         presenter.detach()
     }

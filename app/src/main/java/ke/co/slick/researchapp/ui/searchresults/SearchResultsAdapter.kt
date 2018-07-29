@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.data.models.Doc
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_result.*
+import kotlinx.android.synthetic.main.uspto_result.*
 
 class SearchResultsAdapter(private val dataSet: List<Doc>) :
         RecyclerView.Adapter<SearchResultsAdapter.ViewHolder>() {
@@ -21,7 +21,7 @@ class SearchResultsAdapter(private val dataSet: List<Doc>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.item_result, parent, false)
+        val view = layoutInflater.inflate(R.layout.uspto_result, parent, false)
 
         return ViewHolder(view)
     }

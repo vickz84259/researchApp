@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <TextView
+      android:id="@+id/sourceTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:text="@string/text_source"
+      app:layout_constraintEnd_toStartOf="@+id/journalSource"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
+  <TextView
+      android:id="@+id/journalSource"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="8dp"
+      android:layout_marginStart="8dp"
+      android:text="TextView"
+      android:textStyle="bold"
+      app:layout_constraintBaseline_toBaselineOf="@+id/sourceTextView"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@+id/sourceTextView"/>
+
+  <TextView
+      android:id="@+id/abstractText"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="8dp"
+      android:text="TextView"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/sourceTextView"/>
+
+  <TextView
+      android:id="@+id/issn"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:text="TextView"
+      android:textStyle="bold"
+      app:layout_constraintBaseline_toBaselineOf="@+id/issnTextView"
+      app:layout_constraintEnd_toEndOf="parent"/>
+
+  <TextView
+      android:id="@+id/issnTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="8dp"
+      android:layout_marginTop="8dp"
+      android:ellipsize="end"
+      android:maxLines="3"
+      android:text="@string/text_issn"
+      app:layout_constraintEnd_toStartOf="@+id/issn"
+      app:layout_constraintTop_toBottomOf="@+id/abstractText"/>
+</android.support.constraint.ConstraintLayout>

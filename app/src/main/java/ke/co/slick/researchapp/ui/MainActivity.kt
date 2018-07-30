@@ -45,8 +45,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     fun setTitle() {
         var value = "Search the"
         value = when (selectedItem) {
-            "USPTO" -> "$value U.S. Patents and Trademark Office"
-            "PubAg" -> "$value U.S. Department of Argiculture"
+            getString(R.string.uspto_api) -> "$value U.S. Patents and Trademark Office"
+            getString(R.string.pubag_api) -> "$value U.S. Department of Argiculture"
             else -> "Enter your search query below"
         }
 

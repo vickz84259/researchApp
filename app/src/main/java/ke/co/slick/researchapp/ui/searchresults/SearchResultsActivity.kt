@@ -20,8 +20,6 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
 
     @Inject
     override lateinit var presenter: SearchResultsContract.Presenter
-    private lateinit var query: String
-    private lateinit var apiString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val app = application as ResearchApplication
@@ -29,9 +27,6 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_results)
-
-        query = intent.getStringExtra(EXTRA_QUERY)
-        apiString = intent.getStringExtra(EXTRA_API)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
@@ -42,6 +37,9 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
 
     override fun onResume() {
         super.onResume()
+
+        val query = intent.getStringExtra(EXTRA_QUERY)
+        val apiString = intent.getStringExtra(EXTRA_API)
 
         presenter.attach(this)
         presenter.search(query, apiString)

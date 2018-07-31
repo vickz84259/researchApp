@@ -1,10 +1,8 @@
 package ke.co.slick.researchapp.di
 
 import android.content.Context
-import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
-import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.data.apis.USPTO_BASE_URL
 import ke.co.slick.researchapp.data.apis.UsptoApi
 import okhttp3.Cache
@@ -19,13 +17,6 @@ import javax.inject.Singleton
 
 @Module
 class ApiModule {
-
-    @Singleton
-    @Provides
-    fun providesSharedPreferences(context: Context): SharedPreferences {
-        val filename = context.getString(R.string.preference_file)
-        return context.getSharedPreferences(filename, Context.MODE_PRIVATE)
-    }
 
     @Singleton
     @Provides

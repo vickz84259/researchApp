@@ -17,7 +17,7 @@ class PubagResultsAdapter(private val dataSet: List<Result>) :
 
         val source = journalSource
         val abstract = abstractText
-        val issn = issnTextView
+        val issnText = issn
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,8 +32,8 @@ class PubagResultsAdapter(private val dataSet: List<Result>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataSet[position]
 
-        holder.source.text = "$item.journal $item.source $item.page"
+        holder.source.text = "${item.journal} ${item.source} ${item.page}"
         holder.abstract.text = item.abstract
-        holder.issn.text = item.issn
+        holder.issnText.text = item.issn
     }
 }

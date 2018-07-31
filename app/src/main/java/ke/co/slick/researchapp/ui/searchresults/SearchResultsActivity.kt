@@ -54,7 +54,7 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
 
     override fun displayResults(result: ApiResponse) {
         recyclerView.adapter = when (result) {
-            is PubagResponse -> PubagResultsAdapter(result.requestList)
+            is PubagResponse -> PubagResultsAdapter(result.resultList)
             is UsptoResponse -> UsptoResultsAdapter(result.response.docs)
         }
     }

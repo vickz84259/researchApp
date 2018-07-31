@@ -9,7 +9,7 @@ data class PubagResponse(
         val version: Int,
         val hitCount: Int,
         val request: Request,
-        val requestList: List<Result>
+        val resultList: List<Result>
 ) : ApiResponse()
 
 @JsonClass(generateAdapter = true)

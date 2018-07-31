@@ -28,14 +28,14 @@ data class Result(
         @Json(name = "publication_year_rev") val publicationYearRev: String,
         val issn: String,
         val type: String,
-        val page: String,
-        val issue: String,
-        val volume: String,
-        @Json(name = "startpage") val startPage: String,
-        @Json(name = "endpage") val endPage: String,
-        val pageoffset: String,
+        val page: String?,
+        val issue: String?,
+        val volume: String?,
+        @Json(name = "startpage") val startPage: String?,
+        @Json(name = "endpage") val endPage: String?,
+        val pageoffset: String?,
         @Json(name = "doi_url") val doiUrl: String,
         val doi: String,
         @Json(name = "text_availability") val textAvailability: List<String>,
-        val language: String
+        val language: List<String>
 )

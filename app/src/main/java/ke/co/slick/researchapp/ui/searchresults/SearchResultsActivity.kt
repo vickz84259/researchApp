@@ -6,10 +6,14 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.ResearchApplication
-import ke.co.slick.researchapp.data.models.Doc
+import ke.co.slick.researchapp.data.models.ApiResponse
+import ke.co.slick.researchapp.data.models.PubagResponse
+import ke.co.slick.researchapp.data.models.UsptoResponse
+import ke.co.slick.researchapp.ui.EXTRA_API
 import ke.co.slick.researchapp.ui.EXTRA_QUERY
+import ke.co.slick.researchapp.ui.searchresults.adapters.PubagResultsAdapter
+import ke.co.slick.researchapp.ui.searchresults.adapters.UsptoResultsAdapter
 import kotlinx.android.synthetic.main.activity_search_results.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
@@ -17,6 +21,7 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
     @Inject
     override lateinit var presenter: SearchResultsContract.Presenter
     private lateinit var query: String
+    private lateinit var apiString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val app = application as ResearchApplication
@@ -26,7 +31,7 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
         setContentView(R.layout.activity_search_results)
 
         query = intent.getStringExtra(EXTRA_QUERY)
-        Timber.d("Param query in onCreate: %s", query)
+        apiString = intent.getStringExtra(EXTRA_API)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
@@ -35,36 +40,22 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
         recyclerView.addItemDecoration(itemDecoration)
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString("query", query)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        query = savedInstanceState.getString("query")
-
-        Timber.d("Param query after restoring state: %s", query)
-    }
-
     override fun onResume() {
-        Timber.i("onResume called")
-
         super.onResume()
 
         presenter.attach(this)
-        presenter.search(query)
+        presenter.search(query, apiString)
     }
 
     override fun onDestroy() {
-        Timber.i("onDestory called")
-
         super.onDestroy()
         presenter.detach()
     }
 
-    override fun displayResults(results: List<Doc>) {
-        Timber.i("SearchResultsActivity displayResults called")
-        recyclerView.adapter = SearchResultsAdapter(results)
+    override fun displayResults(result: ApiResponse) {
+        recyclerView.adapter = when (result) {
+            is PubagResponse -> PubagResultsAdapter(result.resultList)
+            is UsptoResponse -> UsptoResultsAdapter(result.response.docs)
+        }
     }
 }

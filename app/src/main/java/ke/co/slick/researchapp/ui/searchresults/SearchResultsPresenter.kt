@@ -7,8 +7,9 @@ import ke.co.slick.researchapp.data.DataManager
 import timber.log.Timber
 import javax.inject.Inject
 
-class SearchResultsPresenter @Inject constructor(private val dataManager: DataManager) :
-        SearchResultsContract.Presenter {
+class SearchResultsPresenter @Inject constructor(
+        private val dataManager: DataManager
+) : SearchResultsContract.Presenter {
 
     private var view: SearchResultsContract.View? = null
     private val compositeDisposable = CompositeDisposable()
@@ -25,16 +26,12 @@ class SearchResultsPresenter @Inject constructor(private val dataManager: DataMa
         Timber.d("observable disposed")
     }
 
-    override fun search(query: String) {
-        val observable = dataManager.getSearchResults(query)
-        compositeDisposable.add(
-                observable
-                    .subscribeOn(Schedulers.io())
-                    .map { it.response.docs }
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { Timber.d("Observable subscribed") }
-                    .doOnComplete { Timber.d("Observable completed") }
-                    .subscribe { view?.displayResults(it) }
-        )
+    override fun search(query: String, apiString: String) {
+        val observable = dataManager.getSearchResults(query, apiString)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { view?.displayResults(it) }
+
+        compositeDisposable.add(observable)
     }
 }

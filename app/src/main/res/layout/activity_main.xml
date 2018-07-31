@@ -9,17 +9,17 @@
 
   <EditText
       android:id="@+id/editText"
-      android:layout_width="wrap_content"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_marginEnd="16dp"
       android:layout_marginStart="16dp"
       android:layout_marginTop="16dp"
       android:ems="10"
       android:hint="@string/search_placeholder"
       android:inputType="textPersonName"
-      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/apiSpinner"
+      app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"/>
+      app:layout_constraintTop_toBottomOf="@+id/titleTextView"/>
 
   <Button
       android:id="@+id/button"
@@ -32,5 +32,32 @@
       android:text="@string/button_search"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/editText"/>
+      app:layout_constraintTop_toBottomOf="@id/editText"/>
+
+  <TextView
+      android:id="@+id/titleTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:text="TextView"
+      android:textSize="14sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
+  <Spinner
+      android:id="@+id/apiSpinner"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:layout_marginEnd="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      app:layout_constraintBottom_toBottomOf="@+id/editText"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@id/editText"
+      app:layout_constraintTop_toTopOf="@+id/editText"/>
 </android.support.constraint.ConstraintLayout>

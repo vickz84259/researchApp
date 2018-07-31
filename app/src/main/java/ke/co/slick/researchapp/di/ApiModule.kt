@@ -1,15 +1,20 @@
 package ke.co.slick.researchapp.di
 
 import android.content.Context
-import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
-import ke.co.slick.researchapp.R
-import ke.co.slick.researchapp.data.apis.BASE_URL
+import ke.co.slick.researchapp.data.apis.PUBAG_BASE_URL
+import ke.co.slick.researchapp.data.apis.PubagApi
+import ke.co.slick.researchapp.data.apis.USPTO_BASE_URL
 import ke.co.slick.researchapp.data.apis.UsptoApi
+import okhttp3.Cache
+import okhttp3.CacheControl
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -17,25 +22,57 @@ class ApiModule {
 
     @Singleton
     @Provides
-    fun providesSharedPreferences(context: Context): SharedPreferences {
-        val filename = context.getString(R.string.preference_file)
-        return context.getSharedPreferences(filename, Context.MODE_PRIVATE)
+    fun providesPubagApi(
+            converterFactory: MoshiConverterFactory,
+            adapterFactory: RxJava2CallAdapterFactory,
+            client: OkHttpClient
+    ): PubagApi {
+        return Retrofit.Builder()
+            .baseUrl(PUBAG_BASE_URL)
+            .client(client)
+            .addConverterFactory(converterFactory)
+            .addCallAdapterFactory(adapterFactory)
+            .build()
+            .create(PubagApi::class.java)
     }
 
     @Singleton
     @Provides
-    fun providesApi(retrofit: Retrofit) = retrofit.create(UsptoApi::class.java)
+    fun providesUsptoApi(
+            converterFactory: MoshiConverterFactory,
+            adapterFactory: RxJava2CallAdapterFactory,
+            client: OkHttpClient
+    ): UsptoApi {
+        return Retrofit.Builder()
+            .baseUrl(USPTO_BASE_URL)
+            .client(client)
+            .addConverterFactory(converterFactory)
+            .addCallAdapterFactory(adapterFactory)
+            .build()
+            .create(UsptoApi::class.java)
+    }
 
     @Singleton
     @Provides
-    fun providesRetrofit(
-            converterFactory: MoshiConverterFactory,
-            adapterFactory: RxJava2CallAdapterFactory
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(converterFactory)
-            .addCallAdapterFactory(adapterFactory)
+    fun providesOkHttpClient(context: Context): OkHttpClient {
+        val cacheSize: Long = 10 * 1024 * 1024 // 10MB
+        val cache = Cache(context.cacheDir, cacheSize)
+
+        val networkCacheInterceptor = Interceptor { chain ->
+            val response = chain.proceed(chain.request())
+
+            var cacheControl = CacheControl.Builder()
+                .maxAge(1, TimeUnit.DAYS)
+                .build()
+
+            response.newBuilder()
+                .header("Cache-Control", cacheControl.toString())
+                .build()
+        }
+
+        return OkHttpClient.Builder()
+            .cache(cache)
+            .addNetworkInterceptor(networkCacheInterceptor)
             .build()
     }
 

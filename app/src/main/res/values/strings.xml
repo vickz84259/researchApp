@@ -1,7 +1,14 @@
 <resources>
   <string name="app_name">researchApp</string>
+
   <string name="button_search">Search</string>
   <string name="search_placeholder">Enter your search query</string>
   <string name="text_placeholder">Text</string>
+  <string name="text_source">Source:</string>
+  <string name="text_issn">Issn:</string>
+
   <string name="preference_file">ke.co.slick.researchapp.CACHE</string>
+
+  <string name="uspto_api">USPTO</string>
+  <string name="pubag_api">PubAg</string>
 </resources>

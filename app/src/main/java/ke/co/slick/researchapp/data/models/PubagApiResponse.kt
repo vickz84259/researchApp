@@ -4,14 +4,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class PubagResponse(
-        val version: Int,
-        val hitCount: Int,
-        val request: Request,
-        val requestList: List<Result>
-)
-
-@JsonClass(generateAdapter = true)
 data class Request(
         val query: String,
         val page: Int,

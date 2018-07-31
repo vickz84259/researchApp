@@ -3,6 +3,8 @@ package ke.co.slick.researchapp.di
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import ke.co.slick.researchapp.data.apis.PUBAG_BASE_URL
+import ke.co.slick.researchapp.data.apis.PubagApi
 import ke.co.slick.researchapp.data.apis.USPTO_BASE_URL
 import ke.co.slick.researchapp.data.apis.UsptoApi
 import okhttp3.Cache
@@ -17,6 +19,22 @@ import javax.inject.Singleton
 
 @Module
 class ApiModule {
+
+    @Singleton
+    @Provides
+    fun providesPubagApi(
+            converterFactory: MoshiConverterFactory,
+            adapterFactory: RxJava2CallAdapterFactory,
+            client: OkHttpClient
+    ): PubagApi {
+        return Retrofit.Builder()
+            .baseUrl(PUBAG_BASE_URL)
+            .client(client)
+            .addConverterFactory(converterFactory)
+            .addCallAdapterFactory(adapterFactory)
+            .build()
+            .create(PubagApi::class.java)
+    }
 
     @Singleton
     @Provides

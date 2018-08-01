@@ -7,9 +7,8 @@ import ke.co.slick.researchapp.data.DataManager
 import timber.log.Timber
 import javax.inject.Inject
 
-class SearchResultsPresenter @Inject constructor(
-        private val dataManager: DataManager
-) : SearchResultsContract.Presenter {
+class SearchResultsPresenter @Inject constructor(private val dataManager: DataManager) :
+        SearchResultsContract.Presenter {
 
     private var view: SearchResultsContract.View? = null
     private val compositeDisposable = CompositeDisposable()

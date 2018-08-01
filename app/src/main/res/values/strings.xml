@@ -11,4 +11,5 @@
 
   <string name="uspto_api">USPTO</string>
   <string name="pubag_api">PubAg</string>
+  <string name="springer_api">Springer Nature</string>
 </resources>

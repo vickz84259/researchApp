@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         value = when (selectedItem) {
             getString(R.string.uspto_api) -> "$value U.S. Patents and Trademark Office"
             getString(R.string.pubag_api) -> "$value U.S. Department of Argiculture"
+            getString(R.string.springer_api) -> "$value Springer Nature API"
             else -> "Enter your search query below"
         }
 

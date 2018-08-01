@@ -8,10 +8,12 @@ import ke.co.slick.researchapp.R
 import ke.co.slick.researchapp.ResearchApplication
 import ke.co.slick.researchapp.data.models.ApiResponse
 import ke.co.slick.researchapp.data.models.PubagResponse
+import ke.co.slick.researchapp.data.models.SpringerResponse
 import ke.co.slick.researchapp.data.models.UsptoResponse
 import ke.co.slick.researchapp.ui.EXTRA_API
 import ke.co.slick.researchapp.ui.EXTRA_QUERY
 import ke.co.slick.researchapp.ui.searchresults.adapters.PubagResultsAdapter
+import ke.co.slick.researchapp.ui.searchresults.adapters.SpringerResultsAdapter
 import ke.co.slick.researchapp.ui.searchresults.adapters.UsptoResultsAdapter
 import kotlinx.android.synthetic.main.activity_search_results.*
 import javax.inject.Inject
@@ -54,6 +56,7 @@ class SearchResultsActivity : AppCompatActivity(), SearchResultsContract.View {
         recyclerView.adapter = when (result) {
             is PubagResponse -> PubagResultsAdapter(result.resultList)
             is UsptoResponse -> UsptoResultsAdapter(result.response.docs)
+            is SpringerResponse -> SpringerResultsAdapter(result.records)
         }
     }
 }

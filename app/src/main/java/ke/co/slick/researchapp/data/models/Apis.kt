@@ -14,3 +14,12 @@ data class PubagResponse(
 
 @JsonClass(generateAdapter = true)
 data class UsptoResponse(val response: Response) : ApiResponse()
+
+@JsonClass(generateAdapter = true)
+data class SpringerResponse(
+        val apiMessage: String,
+        val query: String,
+        val apiKey: String,
+        val result: List<SpringerResult>,
+        val records: List<Record>
+) : ApiResponse()

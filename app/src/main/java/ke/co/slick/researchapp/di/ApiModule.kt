@@ -5,6 +5,8 @@ import dagger.Module
 import dagger.Provides
 import ke.co.slick.researchapp.data.apis.PUBAG_BASE_URL
 import ke.co.slick.researchapp.data.apis.PubagApi
+import ke.co.slick.researchapp.data.apis.SPRINGER_BASE_URL
+import ke.co.slick.researchapp.data.apis.SpringerApi
 import ke.co.slick.researchapp.data.apis.USPTO_BASE_URL
 import ke.co.slick.researchapp.data.apis.UsptoApi
 import okhttp3.Cache
@@ -19,6 +21,22 @@ import javax.inject.Singleton
 
 @Module
 class ApiModule {
+
+    @Singleton
+    @Provides
+    fun providesSpringerApi(
+            converterFactory: MoshiConverterFactory,
+            adapterFactory: RxJava2CallAdapterFactory,
+            client: OkHttpClient
+    ): SpringerApi {
+        return Retrofit.Builder()
+            .baseUrl(SPRINGER_BASE_URL)
+            .client(client)
+            .addConverterFactory(converterFactory)
+            .addCallAdapterFactory(adapterFactory)
+            .build()
+            .create(SpringerApi::class.java)
+    }
 
     @Singleton
     @Provides

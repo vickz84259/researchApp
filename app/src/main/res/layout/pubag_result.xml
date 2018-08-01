@@ -6,31 +6,20 @@
     android:layout_height="wrap_content">
 
   <TextView
-      android:id="@+id/sourceTextView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="16dp"
-      android:layout_marginTop="16dp"
-      android:text="@string/text_source"
-      app:layout_constraintEnd_toStartOf="@+id/journalSource"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"/>
-
-  <TextView
       android:id="@+id/journalSource"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:text="TextView"
-      android:textStyle="bold"
+      android:layout_marginEnd="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
       android:ellipsize="end"
       android:singleLine="true"
-      app:layout_constraintBaseline_toBaselineOf="@+id/sourceTextView"
+      android:text="TextView"
+      android:textSize="18sp"
+      android:textStyle="bold"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/sourceTextView"/>
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
 
   <TextView
       android:id="@+id/abstractText"
@@ -38,31 +27,24 @@
       android:layout_height="wrap_content"
       android:layout_marginEnd="16dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="8dp"
       android:ellipsize="end"
-      android:maxLines="3"
+      android:singleLine="true"
       android:text="TextView"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/sourceTextView"/>
+      app:layout_constraintTop_toBottomOf="@+id/journalSource"/>
 
   <TextView
       android:id="@+id/issn"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
       android:layout_marginEnd="16dp"
       android:text="TextView"
+      android:textSize="12sp"
       android:textStyle="bold"
-      app:layout_constraintBaseline_toBaselineOf="@+id/issnTextView"
-      app:layout_constraintEnd_toEndOf="parent"/>
-
-  <TextView
-      android:id="@+id/issnTextView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_marginTop="8dp"
-      android:text="@string/text_issn"
-      app:layout_constraintEnd_toStartOf="@+id/issn"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/abstractText"/>
+
 </android.support.constraint.ConstraintLayout>

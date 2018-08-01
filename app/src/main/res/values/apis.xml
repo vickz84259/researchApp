@@ -3,5 +3,6 @@
   <string-array name="apis_array">
     <item>@string/uspto_api</item>
     <item>@string/pubag_api</item>
+    <item>@string/springer_api</item>
   </string-array>
 </resources>

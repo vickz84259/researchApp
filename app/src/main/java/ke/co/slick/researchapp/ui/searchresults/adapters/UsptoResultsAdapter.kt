@@ -17,6 +17,7 @@ class UsptoResultsAdapter(private val dataSet: List<Doc>) :
 
         val documentType = resultDocumentType
         val title = resultTitle
+        val applicationNumber = resultAppNo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,6 +32,7 @@ class UsptoResultsAdapter(private val dataSet: List<Doc>) :
 
         holder.documentType.text = item.documentType
         holder.title.text = item.title
+        holder.applicationNumber.text = item.applicationNumber
     }
 
     override fun getItemCount() = dataSet.size
